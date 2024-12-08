@@ -1,0 +1,123 @@
+text_v <- scan("Slavic_4530/1958_combined.txt", what = "character", sep = "\n")
+#if using this code for future projects don't forget to change the scan to whatever title you've given the text
+#The same code was used for all 6 years analyzed by this project, the text scanned was the only change made between years
+novel_v <- paste(text_v, collapse = " ")
+novel_lower_v <- tolower(novel_v)
+words_l <- strsplit(novel_lower_v, "\\W")
+word_v <- unlist(words_l)
+not_blanks_v <- which(word_v != "")
+word_v <- word_v[not_blanks_v]
+
+
+n_time_v <- seq(from = 1, to = length(word_v))
+
+
+abortion_hits <- grep(
+  "аборт|аборты|абортов|абортам|аборты|абортами|абортах|аборта|аборту|абортом|аборте|
+Выкидыш|выкидыши|выкидышей|выкидышам|выкидыши|выкидышами|выкидышах|выкидыша|выкидышу|
+выкидышем|выкидыше|плодоизгнание",
+  
+  word_v
+)
+
+
+STD_hits <- grep(
+  "зппп|иппп|бппп",
+  word_v
+)
+
+SexEd_hits <- grep(
+  "венерические заболевания|венерические болезни|половое воспитание|
+  половое просвещение|сексуальное образование ",
+  word_v
+)
+
+HIV_hits <- grep(
+  "вич|спида",
+  word_v
+)
+
+Preg_hits <- grep(
+  "беременность|беременности|беременностей|беременные|беременных|беременным|
+  беременные|беременными|беременны|беременный|беременного|беременному|беременном|
+  беременен|беременная|беременной|беременную|беременна|беременное|беременно
+  акушерка|акушерки|акушерок|акушеркам|акушерками|акушерках|акушерке|акушерку|
+акушеркой|акушерство|акушерства|акушерству|акушерством|акушерстве|
+  акушерский|акушерская|акушерское|акушерские|акушерского|акушерской|акушерских|
+акушерскому|акушерским|акушерскую|акушерскою|акушерскими|акушерском",
+  word_v
+)
+
+Birth_hits <- grep(
+  "рожу|родишь|родит|родим|родите|родят|роди|родил|родила|родило|родили|
+родил бы|родила бы|родило бы|родили бы|родивший|родив|рожаю|рожаешь|рожает|
+рожаем|рожаете|рожают|рожай|рожайте|рожал|рожала|рожало|рожали|рожал бы|
+рожала бы|рожало бы|рожали бы|рождаю|рождаешь|рождает|рождаем|рождаете|
+рождают|рождай|рождайте|рождал|рождала|рождало|рождали|рождал бы|
+рождала бы|рождало бы|рождали бы|рождающий|рождавший|рождаемый|рождая|рождав",
+  word_v
+)
+womenHealth_hits <- grep(
+  "женского здоровья|женскому здоровью|женское здоровье|женским здоровьем|
+  женском здоровье",
+  word_v
+)
+
+WomenNoun_hits <- grep(
+  "женщина|женщины|женщине|женщину|женщиной|женщине|
+женщины|женщин|женщинам|женщин|женщинами|женщинах",
+  word_v
+)
+WomenAdj_hits <- grep(
+  "женские|женских|женским|женских|женские|женскими|женских|женский|женского|
+женскому|женского|женский|женским|женском|женская|женской|женскую|женское",
+  word_v
+)
+
+
+Fetus_hits <- grep(
+  "плод|плоды|плодов|плодам|плоды|плодами|плодах|плода|плоду|плодом|плоде|
+зародыш|зародыши|зародышей|зародышам|зародышами|зародышах|зародыша|зародышу|
+зародышем|зародыше|эмбрионы|эмбрионов|эмбрионам|эмбрионы|эмбрионами|эмбрионах|
+эмбрион|эмбриона|эмбриону|эмбрионом|эмбрионе",
+  word_v
+)
+
+BC_hits <- grep(
+  "контрацепции|контрацепций|контрацепциям|контрацепции|контрацепциями|
+контрацепциях|контрацепция|контрацепцию|контрацепцией",
+  word_v
+)
+
+
+
+
+eg_v <- strsplit(eg_v, "\\W")
+
+strsplit(eg_v, "[^A-Za-z0-9']")
+
+Labortion_hits <- length(abortion_hits)
+LBC_hits <- length(BC_hits)
+LBirth_hits <- length(Birth_hits)
+LFetus_hits <- length(Fetus_hits)
+LHIV_hits <- length(HIV_hits)
+LPreg_hits <- length(Preg_hits)
+LSexEd_hits <- length(SexEd_hits)
+LSTD_hits <- length(STD_hits)
+LWomenAdj_hits <- length(WomenAdj_hits)
+LwomenHealth_hits <- length(womenHealth_hits)
+LWomenNoun_hits <- length(WomenNoun_hits)
+
+total_words_v <- length(word_v)
+
+Labortion_hits / total_words_v
+LBC_hits / total_words_v
+LBirth_hits / total_words_v
+LFetus_hits / total_words_v
+LHIV_hits / total_words_v
+LPreg_hits / total_words_v
+LSexEd_hits / total_words_v
+LSTD_hits / total_words_v
+LWomenAdj_hits / total_words_v
+LwomenHealth_hits / total_words_v
+LWomenNoun_hits / total_words_v
